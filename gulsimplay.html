@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GülsimPlay</title>
+  <link rel="stylesheet" href="g.css" />
+  <style>
+    .banner-rotator {
+      width: 550px;
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .banner-img {
+      width: 100%;
+      height: 150%;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: opacity 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="banner-rotator">
+      <img src="https://i.ibb.co/2Y1Tq4nG/71202.jpg" alt="Gönül Dağı" class="banner-img" style="display:block;">
+      <img src="https://m.media-amazon.com/images/M/MV5BYmI5NTExYzItMmE3OS00MDM3LTkyNzAtZjFlMjQxYzE5ZjQ4XkEyXkFqcGc@._V1_.jpg" alt="Hanım Köylü" class="banner-img" style="display:none;">
+      <img src="https://i.pinimg.com/474x/f4/09/fc/f409fc208404d63e48fe08edf9bf06bd.jpg" alt="Diriliş: Ertuğrul" class="banner-img" style="display:none;">
+     
+    </div>
+    <h1>GülsimPlay</h1>
+    <script>
+      // Banner rotator
+      const banners = document.querySelectorAll('.banner-rotator .banner-img');
+      let currentBanner = 0;
+      setInterval(() => {
+      banners[currentBanner].style.display = 'none';
+      currentBanner = (currentBanner + 1) % banners.length;
+      banners[currentBanner].style.display = 'block';
+      }, 3000);
+    </script></div>
+    <nav>
+      <a href="index.html">home</a>
+        <a href="index.html">menu</a>
+         <a href="index.html">about</a>
+        <input type="text" id="searchInput" placeholder="Search series name" />
+        <button onclick="searchSeries()">Search</button>
+    </nav>
+  </header>
+  <main>
+    <h2>Turkish Series</h2>
+    <div class="series-grid" id="seriesGrid">
+      <a href="https://hilalplay.com/en/detail/an-anatolian-tale/395">
+        <img src="https://i.ibb.co/2Y1Tq4nG/71202.jpg" alt="Woman in traditional Turkish clothing smiling warmly while standing outdoors in a scenic rural landscape with rolling hills and greenery, conveying a joyful and welcoming mood" />
+        <p>Gönül Dağı</p>
+      </a>
+      <a href="hanimkoylu.html">
+        <img src="https://m.media-amazon.com/images/M/MV5BYmI5NTExYzItMmE3OS00MDM3LTkyNzAtZjFlMjQxYzE5ZjQ4XkEyXkFqcGc@._V1_.jpg" alt="Young woman in a colorful headscarf and traditional Turkish dress smiling warmly while standing outdoors in a lush green rural setting with trees and a wooden fence in the background, conveying a cheerful and welcoming mood" />
+        <p>Hanım Köylü</p>
+      </a>
+      <a href="ertugrul.html">
+        <img src="https://i.pinimg.com/474x/f4/09/fc/f409fc208404d63e48fe08edf9bf06bd.jpg" alt="Diriliş: Ertuğrul" />
+        <p>Diriliş: Ertuğrul</p>
+      </a>
+    </div>
+  </main>
+  <script>
+    function searchSeries() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const grid = document.getElementById('seriesGrid');
+      const items = grid.getElementsByTagName('a');
+      for (let i = 0; i < items.length; i++) {
+        const title = items[i].getElementsByTagName('p')[0].textContent.toLowerCase();
+        if (title.includes(input)) {
+          items[i].style.display = '';
+        } else {
+          items[i].style.display = 'none';
+        }
+      }
+    }
+    document.getElementById('searchInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        searchSeries();
+      }
+    });
+  </script>
+</body>
+</html>
